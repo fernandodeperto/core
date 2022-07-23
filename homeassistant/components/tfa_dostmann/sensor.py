@@ -1,5 +1,6 @@
 """Support for TFA Dostmann Coach data."""
-from datetime import timedelta
+from __future__ import annotations
+
 import logging
 
 import async_timeout
@@ -22,8 +23,6 @@ from .api import TFADostmannAPI
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
-
-SCAN_INTERVAL = timedelta(minutes=5)
 
 ATTRIBUTION = "Data provided by TFA Dostmann AirCo2ntrol Coach"
 FRIENDLY_NAME = "AirCo2ntrol Coach"
@@ -72,6 +71,6 @@ class TFADostmannCO2Sensor(SensorEntity):
     async def async_update(self):
         """Get the CO2 data from the API."""
         async with async_timeout.timeout(5):
-            self._concentration = await self._api.getConcentration()
+            self._concentration = await self._api.get_concentration()
 
         _LOGGER.debug("CO2 concentration: %d", self._concentration)

@@ -114,6 +114,7 @@ FLOWS = {
         "flume",
         "flunearyou",
         "flux_led",
+        "foobar",
         "forecast_solar",
         "forked_daapd",
         "foscam",
