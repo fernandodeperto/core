@@ -1,6 +1,7 @@
 """Support for TFA Dostmann Coach data."""
 from __future__ import annotations
 
+from datetime import timedelta
 import logging
 
 import async_timeout
@@ -24,6 +25,8 @@ from .api import TFADostmannAPI
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
+
+SCAN_INTERVAL = timedelta(seconds=30)
 
 ATTRIBUTION = "Data provided by TFA Dostmann AirCo2ntrol Coach"
 FRIENDLY_NAME = "AirCo2ntrol Coach"
