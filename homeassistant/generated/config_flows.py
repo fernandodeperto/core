@@ -365,6 +365,7 @@ FLOWS = {
         "tautulli",
         "tellduslive",
         "tesla_wall_connector",
+        "tfa_dostmann",
         "tibber",
         "tile",
         "tolo",

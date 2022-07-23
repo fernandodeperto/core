@@ -1,0 +1,13 @@
+{
+  "domain": "tfa_dostmann",
+  "name": "AirCo2ntrol Coach",
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/tfa_dostmann",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": ["@fernandodeperto"],
+  "iot_class": "local_polling"
+}
