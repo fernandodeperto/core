@@ -15,6 +15,7 @@ from homeassistant.const import (
     ATTR_ATTRIBUTION,
     ATTR_FRIENDLY_NAME,
     CONCENTRATION_PARTS_PER_MILLION,
+    CONF_NAME,
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -34,7 +35,7 @@ async def async_setup_entry(
     """Sensor Setup."""
     api: TFADostmannAPI = hass.data[DOMAIN][entry.entry_id]
 
-    async_add_entities([TFADostmannCO2Sensor(api)], True)
+    async_add_entities([TFADostmannCO2Sensor(api, entry.data[CONF_NAME])], True)
 
 
 class TFADostmannCO2Sensor(SensorEntity):
@@ -44,19 +45,19 @@ class TFADostmannCO2Sensor(SensorEntity):
     _attr_native_unit_of_measurement = CONCENTRATION_PARTS_PER_MILLION
     _attr_state_class = SensorStateClass.MEASUREMENT
 
-    def __init__(self, api: TFADostmannAPI) -> None:
+    def __init__(self, api: TFADostmannAPI, name: str) -> None:
         """Initialize."""
         self._api: TFADostmannAPI = api
         self._concentration: int = -1
         self._attributes = {
             ATTR_ATTRIBUTION: ATTRIBUTION,
-            ATTR_FRIENDLY_NAME: FRIENDLY_NAME,
+            ATTR_FRIENDLY_NAME: f"{FRIENDLY_NAME} - {name}",
         }
 
     @property
     def name(self):
         """Return the name of the sensor."""
-        return FRIENDLY_NAME
+        return self._attributes[ATTR_FRIENDLY_NAME]
 
     @property
     def native_value(self):
